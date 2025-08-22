@@ -115,7 +115,7 @@
                 <p>Sign up for the waitlist and get early free access!</p>
             </div>
 
-            <form hx-post="/api/waitlist" hx-trigger="submit" hx-target="#result" hx-on="htmx:beforeRequest: disableButton(this); htmx:afterRequest: enableButton(this); htmx:afterRequest: showMessage(event.detail.xhr)" class="gap-3 flex flex-col w-full mx-auto items-center">
+            <form hx-post="/api/waitlist" hx-trigger="submit" hx-target="#result" hx-on="htmx:afterRequest: showMessage(event.detail.xhr)" class="gap-3 flex flex-col w-full mx-auto items-center">
                 <input type="text" name="name" id="name" class="bg-[#FFFFFF] border border-[E6E6E6] focus:outline-none px-3 py-2 rounded-md max-w-2xl w-full" placeholder="First Name">
 
                 <input type="email" name="email" id="email" required class="bg-[#FFFFFF] border border-[E6E6E6] focus:outline-none px-3 py-2 rounded-md max-w-2xl w-full" placeholder="Email">
@@ -277,7 +277,7 @@
                     <p class="text-sm">Get early free access</p>
                 </div>
 
-                <form hx-post="/api/waitlist" hx-trigger="submit" hx-target="#result" hx-on="htmx:beforeRequest: disableButton(this); htmx:afterRequest: enableButton(this); htmx:afterRequest: showMessage(event.detail.xhr)" class="gap-3 flex items w-full flex items-center">
+                <form hx-post="/api/waitlist" hx-trigger="submit" hx-target="#result" hx-on="htmx:afterRequest: showMessage(event.detail.xhr)" class="gap-3 flex items w-full flex items-center">
                     <input type="email" name="email" id="email" required type="emial" class="bg-[#FFFFFF] border border-[E6E6E6] focus:outline-none px-3 py-1.5 rounded-md w-full" placeholder="Email">
 
                     <button type="submit" class="text-[#FFFFFF] bg-[#212121] py-1.5 px-9 rounded-md flex items-center justify-center gap-2 w-fit text-center">
@@ -357,22 +357,8 @@
                 toast.classList.remove('hidden');
                 setTimeout(() => toast.classList.add('hidden'), 13000);
             } catch(e) {
-                console.error("Respuesta inválida");
+                console.error("Invalid Response");
             }
-        }
-    </script>
-
-    <script>
-        function disableButton(form) {
-            const btn = form.querySelector("button[type='submit']");
-            btn.disabled = true;
-            btn.innerText = "Processing...";
-        }
-
-        function enableButton(form) {
-            const btn = form.querySelector("button[type='submit']");
-            btn.disabled = false;
-            btn.innerText = "Join the Waitlist";
         }
     </script>
 </body>
