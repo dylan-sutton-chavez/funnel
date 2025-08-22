@@ -34,8 +34,8 @@ def waitlist_noreply(recipient: str):
 
 app = FastAPI()
 
-limiter_index = RateLimiter(times=6, seconds=1)
-limiter_waitlist = RateLimiter(times=3, seconds=1)
+limiter_index = RateLimiter(times=6, seconds=60)
+limiter_waitlist = RateLimiter(times=2, seconds=300)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -61,5 +61,6 @@ async def throttle_handler(request, exc):
 @app.exception_handler(404)
 async def not_found_redirect(request: Request, exc):
     return RedirectResponse(url="/")
+
 
 # python -m uvicorn main:app --reload
