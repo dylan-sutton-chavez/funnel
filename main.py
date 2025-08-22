@@ -25,7 +25,7 @@ with open("waitlist_message.txt", "r", encoding="utf-8") as f:
 """waitlist_noreply recipient(str) → bool/str"""
 def waitlist_noreply(recipient: str):
     resend.Emails.send({
-        "from": "No Reply <noreply@funnel.rest>",
+        "from": "Welcome to Funnel <welcome@funnel.rest>",
         "to": [recipient], 
         "subject": "Welcome to Funnel - Email Confirmation",
         "text": waitlist_message
@@ -64,4 +64,5 @@ async def not_found_redirect(request: Request, exc):
 
 
 # python -m uvicorn main:app --reload
+
 
