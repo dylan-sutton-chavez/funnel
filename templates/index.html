@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Dylan Sutton Chavez">
+    <meta name="description" content="Funnel is a platform that combines daily social media research, global market segmentation, and the world’s largest B2B sales database. It analyzes communities and sentiment in real time, identifies where interest in your product is highest, and provides relevant business contacts and opportunities every day.">
+    <meta name="keywords" content="Social media research, Market sentiment analysis, Community discovery, Global market segmentation, B2B database, Sales leads, Email contacts, Daily insights, Business opportunities, Targeted marketing">
+
+    <meta name="robots" content="index, follow">
+
+    <title>Funnel - Cloud Console</title>
+
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    
+    <style>
+        @import url("https://db.onlinewebfonts.com/c/0ab46e1b2f236c9fad58c1e34cdecdf1?family=Roobert+TRIAL");
+
+        body {
+        font-family: "Roobert TRIAL", sans-serif;
+        }
+    </style>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.12"></script>
+</head>
+<body class="bg-[#FFFFFF] text-[#212121]">
+    <div class="min-h-screen flex flex-col w-full max-w-6xl w-full mx-auto items-center justify-center">
+        <div class="p-3 z-50 fixed top-0 w-full">
+            <nav class="flex items-center px-3 py-2 border border-[E6E6E6] bg-[#FFFFFF] text-sm mx-auto rounded-md shadow-[0_0_07px_rgba(0,0,0,0.17)]">
+                <div class="flex-shrink-0 flex items-center gap-6 md:gap-0">
+                    <div id="menu-container" class="relative inline-block space-x-3 flex items-center">
+                        <button id="menu-toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 md:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12h16"/>
+                                <path d="M4 18h16"/>
+                                <path d="M4 6h16"/>
+                            </svg>
+                        </button>
+
+                        <div id="menu" class="hidden absolute top-0 left-full bg-[#FFFFFF] border border-[E6E6E6] rounded-md w-[156px] p-4 space-y-2">
+                            <a href="#home" class="block">Home</a>
+
+                            <a href="#waitlist" class="block">Waitlist</a>
+
+                            <a href="#features" class="block">Features</a>
+
+                            <a href="#calendar" class="block">Calendar</a>
+
+                            <a href="#faqs-section" class="block">FAQs</a>
+                        </div>
+                    </div>         
+                    
+                    <a href="/">
+                        <svg width="92.6666666667" height="29" viewBox="0 0 1390 435" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M267.932 134.207C263.752 130.267 259.496 126.371 255.162 122.517C217.032 88.5273 162.082 60.5774 109.942 67.7774C98.649 69.3374 88.129 72.7274 78.3823 77.9474C78.3128 77.9843 78.2326 77.9979 78.1542 77.986C78.0758 77.9741 78.0036 77.9373 77.9489 77.8815C77.8942 77.8256 77.8599 77.7537 77.8515 77.677C77.8431 77.6003 77.861 77.5231 77.9024 77.4574C110.482 22.5874 178.952 26.8574 229.442 50.9974C255.922 63.664 279.549 80.5107 300.322 101.537C300.455 101.674 300.53 101.857 300.53 102.047C300.53 102.238 300.455 102.421 300.322 102.557L268.552 134.317C268.442 134.43 268.381 134.58 268.381 134.737C268.381 134.894 268.442 135.045 268.552 135.157C296.542 162.947 319.172 197.537 330.122 235.507C343.292 281.147 336.442 331.577 292.472 357.667C292.404 357.706 292.324 357.721 292.245 357.711C292.166 357.701 292.093 357.665 292.038 357.611C291.982 357.556 291.946 357.485 291.936 357.408C291.926 357.332 291.942 357.254 291.982 357.187C295.022 351.834 297.482 345.847 299.362 339.227C308.632 306.647 300.982 269.917 286.912 239.997C274.492 213.571 257.542 189.547 236.062 167.927C235.991 167.857 235.934 167.773 235.896 167.68C235.857 167.587 235.837 167.488 235.837 167.387C235.837 167.287 235.857 167.188 235.896 167.095C235.934 167.002 235.991 166.918 236.062 166.847L267.942 134.967C267.993 134.917 268.033 134.856 268.06 134.79C268.088 134.724 268.101 134.653 268.1 134.582C268.099 134.511 268.084 134.441 268.055 134.377C268.026 134.312 267.984 134.255 267.932 134.207Z" fill="black"/>
+                            <path d="M35.5695 367.09C35.5011 367.021 35.4627 366.927 35.4627 366.83C35.4627 366.733 35.5011 366.639 35.5695 366.57L67.2495 334.89C67.44 334.699 67.547 334.44 67.547 334.17C67.547 333.9 67.44 333.641 67.2495 333.45C28.8095 295.06 -3.75052 238.91 0.349485 182.75C1.28948 169.87 4.96948 155.83 11.1895 144.58C42.9095 87.13 114.109 92.03 165.059 116.84C191.139 129.547 214.383 146.24 234.789 166.92C234.828 166.958 234.858 167.003 234.878 167.053C234.899 167.103 234.91 167.156 234.91 167.21C234.91 167.264 234.899 167.317 234.878 167.367C234.858 167.417 234.828 167.462 234.789 167.5L203.089 199.2C202.906 199.386 202.802 199.637 202.802 199.898C202.802 200.158 202.906 200.407 203.089 200.59C240.659 238.15 272.559 292.51 270.259 347.22C268.799 381.89 251.399 411.82 219.479 426.39C186.539 441.42 145.389 434.91 113.439 420.88C84.0195 407.967 58.0628 390.037 35.5695 367.09ZM79.6695 147.01C62.3895 150.67 51.2995 162.02 47.8595 178.79C42.8395 203.27 52.2595 231.34 64.2895 253.08C73.8695 270.393 85.9028 286.29 100.389 300.77C100.471 300.851 100.567 300.916 100.673 300.96C100.78 301.004 100.893 301.027 101.007 301.027C101.122 301.027 101.235 301.004 101.34 300.96C101.445 300.916 101.54 300.851 101.619 300.77L133.229 269.16C133.294 269.095 133.37 269.044 133.454 269.009C133.538 268.974 133.628 268.956 133.719 268.956C133.811 268.956 133.901 268.974 133.985 269.009C134.069 269.044 134.145 269.095 134.209 269.16C157.659 292.84 188.169 312.8 220.77 320.41C220.846 320.428 220.926 320.426 221.002 320.404C221.078 320.381 221.146 320.34 221.201 320.284C221.257 320.228 221.297 320.159 221.317 320.083C221.338 320.006 221.339 319.926 221.319 319.85C213.269 287.36 192.259 258.5 168.539 235.15C168.355 234.969 168.106 234.869 167.847 234.871C167.589 234.873 167.342 234.977 167.159 235.16L134.629 267.69C134.381 267.934 134.048 268.07 133.702 268.07C133.355 268.07 133.024 267.934 132.779 267.69C115.719 250.723 102.189 231.823 92.1895 210.99C83.2895 192.44 77.6995 171.65 79.6295 151.07C79.7595 149.67 80.2695 148.47 80.2795 147.51C80.2795 147.434 80.2626 147.358 80.2301 147.289C80.1976 147.22 80.1503 147.159 80.0918 147.111C80.0332 147.063 79.9648 147.029 79.8917 147.011C79.8186 146.994 79.7427 146.993 79.6695 147.01ZM115.159 148.15C115.077 148.129 114.991 148.13 114.909 148.152C114.827 148.174 114.752 148.217 114.691 148.276C114.63 148.335 114.585 148.408 114.56 148.49C114.535 148.571 114.532 148.657 114.549 148.74C117.069 160 121.406 171.11 127.559 182.07C138.126 200.87 151.436 218.043 167.49 233.59C167.637 233.734 167.835 233.814 168.042 233.812C168.248 233.81 168.445 233.727 168.589 233.58L201.219 200.95C201.461 200.71 201.598 200.383 201.6 200.042C201.602 199.701 201.469 199.373 201.229 199.13C177.869 175.41 148.109 156.71 115.159 148.15ZM222.249 354.7C212.743 356.193 203.033 356.02 193.119 354.18C158.059 347.67 126.869 326.71 101.869 302.26C101.625 302.02 101.295 301.887 100.952 301.888C100.61 301.89 100.282 302.027 100.039 302.27L68.7295 333.58C68.5976 333.713 68.5236 333.893 68.5236 334.08C68.5236 334.267 68.5976 334.447 68.7295 334.58C94.7495 360.56 129.999 383.35 167.139 387.87C192.749 390.98 216.549 382.81 222.579 355.06C222.592 355.014 222.592 354.966 222.58 354.92C222.569 354.874 222.546 354.831 222.513 354.796C222.48 354.76 222.439 354.733 222.393 354.716C222.348 354.699 222.298 354.694 222.249 354.7Z" fill="black"/>
+                            <path d="M499.72 316V195.72H469.65V159.76H499.72V145.81C499.72 113.26 522.97 91.87 558.31 91.87H587.45V127.83H563.89C551.49 127.83 543.12 135.89 543.12 148.29V159.76H587.45V195.72H543.12V316H499.72ZM663.809 318.48C628.779 318.48 605.839 292.75 605.839 257.1V159.76H649.239V247.49C649.239 266.4 661.329 280.04 679.309 280.04C698.219 280.04 711.549 265.16 711.549 245.32V159.76H754.639V316H711.549V294.3C702.869 309.18 685.509 318.48 663.809 318.48ZM789.945 316V159.76H833.035V181.46C841.715 166.27 859.075 157.28 880.775 157.28C915.805 157.28 938.745 182.7 938.745 218.66V316H895.345V228.27C895.345 209.36 883.255 195.72 865.275 195.72C846.365 195.72 833.035 210.29 833.035 230.44V316H789.945ZM972.191 316V159.76H1015.28V181.46C1023.96 166.27 1041.32 157.28 1063.02 157.28C1098.05 157.28 1120.99 182.7 1120.99 218.66V316H1077.59V228.27C1077.59 209.36 1065.5 195.72 1047.52 195.72C1028.61 195.72 1015.28 210.29 1015.28 230.44V316H972.191ZM1226.05 318.48C1172.73 318.48 1145.76 276.94 1145.76 237.57C1145.76 198.2 1169.94 157.28 1222.95 157.28C1278.13 157.28 1299.83 198.2 1299.83 233.54C1299.83 239.43 1299.52 244.08 1299.21 247.49H1186.99C1190.4 269.5 1204.04 283.14 1226.05 283.14C1243.41 283.14 1254.88 276.32 1258.29 262.99H1300.45C1294.25 296.78 1264.49 318.48 1226.05 318.48ZM1187.92 219.9H1257.05C1255.5 202.54 1243.72 188.9 1222.95 188.9C1204.35 188.9 1192.26 199.75 1187.92 219.9ZM1327.6 316V91.87H1370.69V316H1327.6Z" fill="black"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex flex-1 justify-center items-center gap-6">
+                    <a href="#home" class="block">Home</a>
+
+                    <a href="#waitlist" class="block">Waitlist</a>
+
+                    <a href="#features" class="block">Features</a>
+
+                    <a href="#calendar" class="block">Calendar</a>
+
+                    <a href="#faqs-section" class="block">FAQs</a>
+                </div>
+
+                <div class="flex items-center ml-auto flex-shrink-0">
+                    <a href="#waitlist" class="text-[#FFFFFF] bg-[#212121] py-1.5 px-3 rounded-md flex items-center gap-2">
+                        <span>Join Waitlist</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div id="home" class="flex-1 mt-[57px] flex flex-col items-center justify-center space-y-9 p-3">
+            <div class="text-center">
+                <h1 class="font-semibold text-3xl">Funnel - Analyze & get leads instantly</h1>
+                <p class="text-xl">Sign up for the waitlist and get free access!</p>
+            </div>
+
+            <div class="border border-[#E6E6E6] rounded-md max-w-[872px] w-full mx-auto">
+                <img src="/static/demo.png" alt="Demo" class="block w-full h-auto p-3" loading="lazy">
+            </div>
+
+            <p>More than 100 users on the waiting list</p>
+        </div>
+    </div>
+
+    <div id="waitlist" class="bg-[#f9f9f9] border-y border-[E6E6E6] px-3 py-9">
+        <div class="max-w-6xl w-full mx-auto flex flex-col items-center justify-center gap-6">
+            <div class="text-center">
+                <h2 class="font-semibold text-xl">Join the Waitlist Now!</h2>
+
+                <p>Sign up for the waitlist and get early free access!</p>
+            </div>
+
+            <form hx-post="/api/waitlist" hx-trigger="submit" hx-target="#result" hx-on="htmx:afterRequest: showMessage(event.detail.xhr)" class="gap-3 flex flex-col w-full mx-auto items-center">
+                <input type="text" name="name" id="name" class="bg-[#FFFFFF] border border-[E6E6E6] focus:outline-none px-3 py-2 rounded-md max-w-2xl w-full" placeholder="First Name">
+
+                <input type="email" name="email" id="email" required class="bg-[#FFFFFF] border border-[E6E6E6] focus:outline-none px-3 py-2 rounded-md max-w-2xl w-full" placeholder="Email">
+
+                <button type="submit" class="text-[#FFFFFF] bg-[#212121] py-2 px-3 rounded-md flex items-center justify-center gap-2 max-w-2xl w-full text-center">
+                    <span>Join the Waitlist</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="features" class="min-h-screen flex flex-col justify-center space-y-9 max-w-4xl lg:max-w-6xl w-full mx-auto px-9 py-12">
+        <p>[ PRODUCTS ]</p>
+
+        <h3 class="font-semibold text-2xl">Find Demand Where It Happens</h3>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-9">
+            <div class="bg-[#f9f9f9] border border-[E6E6E6] py-5 px-7 space-y-2">
+                <p class="font-semibold text-lg">Daily social media research</p>
+
+                <p>Every day, Funnel performs a complete market search, analyzing community sentiment and recommending potential communities, people, and groups for your product.</p>
+            </div>
+
+            <div class="bg-[#f9f9f9] border border-[E6E6E6] py-5 px-7 space-y-2">
+                <p class="font-semibold text-lg">Global market segmentation</p>
+                
+                <p>Funnel automatically segments your market visually based on market sentiment, showing you countries with the most interest in your product on a daily basis.</p>
+            </div>
+
+            <div class="bg-[#f9f9f9] border border-[E6E6E6] py-5 px-7 space-y-2">
+                <p class="font-semibold text-lg">B2B database for sales</p>
+
+                <p>Funnel has the largest business database in the world. We will search daily for potential businesses that might be interested in your product, and we will give you their emails.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="calendar" class="bg-[#f9f9f9] border-y border-[E6E6E6] px-3 py-9 text-center">
+        <div class="mb-9">
+            <h1 class="font-semibold text-xl">Schedule a meeting with us</h1>
+
+            <p>Need a meeting? Schedule one now and talk to the team.</p>
+        </div>
+
+        <a href="https://cal.com/dylan-sutton-chavez/" target="_blank" class="text-[#FFFFFF] flex items-center w-fit mx-auto gap-3 bg-[#212121] rounded-md px-6 py-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v4"/>
+                <path d="M16 2v4"/>
+                <rect width="18" height="18" x="3" y="4" rx="2"/>
+                <path d="M3 10h18"/>
+                <path d="M8 14h.01"/>
+                <path d="M12 14h.01"/>
+                <path d="M16 14h.01"/>
+                <path d="M8 18h.01"/>
+                <path d="M12 18h.01"/>
+                <path d="M16 18h.01"/>
+            </svg>
+
+            <p>Our Calendar</p>
+        </a>
+    </div>
+
+    <div id="faqs-section" class="min-h-screen flex flex-col gap-9 items-center justify-center max-w-3xl w-full mx-auto px-3 py-12">
+        <div class="text-center">
+            <h1 class="font-semibold text-xl">Frequently Asked Questions</h1>
+            <p>Do you have any additional questions? Send us an email.</p>
+        </div>
+
+        <div class="border border-[E6E6E6] w-full px-5 py-4 text-left rounded-md flex flex-col space-y-4 faq">
+            <button class="faq-btn flex items-center font-semibold text-left">
+                <span>How do I get access to the beta?</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon transition-transform duration-100 size-5 ml-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
+            </button>
+
+            <p class="faq-content hidden">If you want access to the beta, just sign up for our waiting list. You'll receive free access during the beta, along with a gift at the end. We may contact you to ask for your feedback.</p>
+        </div>
+
+        <div class="border border-[E6E6E6] w-full px-5 py-4 text-left rounded-md flex flex-col space-y-4 faq">
+            <button class="faq-btn flex items-center font-semibold text-left">
+                <span>When will the Funnel come out?</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon transition-transform duration-100 size-5 ml-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
+            </button>
+
+            <p class="faq-content hidden">Our beta starts in less than three weeks, after which it will be open to everyone two months later.</p>
+        </div>
+
+        <div class="border border-[E6E6E6] w-full px-5 py-4 text-left rounded-md flex flex-col space-y-4 faq">
+            <button class="faq-btn flex items-center font-semibold text-left">
+                <span>Do you offer payment plans?</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon transition-transform duration-100 size-5 ml-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
+            </button>
+
+            <p class="faq-content hidden">During the beta phase, use will be free, but with limited access to all features. If you require more use, you can contact us or schedule a call, and we can find a solution that suits you.</p>
+        </div>
+
+        <div class="border border-[E6E6E6] w-full px-5 py-4 text-left rounded-md flex flex-col space-y-4 faq">
+            <button class="faq-btn flex items-center font-semibold text-left">
+                <span>How do they get the data?</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon transition-transform duration-100 size-5 ml-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
+            </button>
+
+            <p class="faq-content hidden">Funnel analyzes all social networks daily, including only news and posts from that day (or depending on the time you select). From there, we analyze the entire community and deliver potential leads to you.</p>
+        </div>
+
+        <div class="border border-[E6E6E6] w-full px-5 py-4 text-left rounded-md flex flex-col space-y-4 faq">
+            <button class="faq-btn flex items-center font-semibold text-left">
+                <span>I need help to be able to use Funnel</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon transition-transform duration-100 size-5 ml-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
+            </button>
+
+            <p class="faq-content hidden">If you need help using our software, you can schedule a call with our team. We'll help you customize it for your product, measure results, and contact potential customers.</p>
+        </div>
+    </div>
+
+    <footer class="bg-[#f9f9f9] border-t border-[E6E6E6] space-y-5 p-5">
+        <div class="flex flex-col lg:flex-row items-start lg:flex-center space-y-9 lg:space-y-0">
+            <div class="flex-shrink-0 space-y-3">
+                <a href="/">
+                    <svg width="92.6666666667" height="29" viewBox="0 0 1390 435" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M267.932 134.207C263.752 130.267 259.496 126.371 255.162 122.517C217.032 88.5273 162.082 60.5774 109.942 67.7774C98.649 69.3374 88.129 72.7274 78.3823 77.9474C78.3128 77.9843 78.2326 77.9979 78.1542 77.986C78.0758 77.9741 78.0036 77.9373 77.9489 77.8815C77.8942 77.8256 77.8599 77.7537 77.8515 77.677C77.8431 77.6003 77.861 77.5231 77.9024 77.4574C110.482 22.5874 178.952 26.8574 229.442 50.9974C255.922 63.664 279.549 80.5107 300.322 101.537C300.455 101.674 300.53 101.857 300.53 102.047C300.53 102.238 300.455 102.421 300.322 102.557L268.552 134.317C268.442 134.43 268.381 134.58 268.381 134.737C268.381 134.894 268.442 135.045 268.552 135.157C296.542 162.947 319.172 197.537 330.122 235.507C343.292 281.147 336.442 331.577 292.472 357.667C292.404 357.706 292.324 357.721 292.245 357.711C292.166 357.701 292.093 357.665 292.038 357.611C291.982 357.556 291.946 357.485 291.936 357.408C291.926 357.332 291.942 357.254 291.982 357.187C295.022 351.834 297.482 345.847 299.362 339.227C308.632 306.647 300.982 269.917 286.912 239.997C274.492 213.571 257.542 189.547 236.062 167.927C235.991 167.857 235.934 167.773 235.896 167.68C235.857 167.587 235.837 167.488 235.837 167.387C235.837 167.287 235.857 167.188 235.896 167.095C235.934 167.002 235.991 166.918 236.062 166.847L267.942 134.967C267.993 134.917 268.033 134.856 268.06 134.79C268.088 134.724 268.101 134.653 268.1 134.582C268.099 134.511 268.084 134.441 268.055 134.377C268.026 134.312 267.984 134.255 267.932 134.207Z" fill="black"/>
+                        <path d="M35.5695 367.09C35.5011 367.021 35.4627 366.927 35.4627 366.83C35.4627 366.733 35.5011 366.639 35.5695 366.57L67.2495 334.89C67.44 334.699 67.547 334.44 67.547 334.17C67.547 333.9 67.44 333.641 67.2495 333.45C28.8095 295.06 -3.75052 238.91 0.349485 182.75C1.28948 169.87 4.96948 155.83 11.1895 144.58C42.9095 87.13 114.109 92.03 165.059 116.84C191.139 129.547 214.383 146.24 234.789 166.92C234.828 166.958 234.858 167.003 234.878 167.053C234.899 167.103 234.91 167.156 234.91 167.21C234.91 167.264 234.899 167.317 234.878 167.367C234.858 167.417 234.828 167.462 234.789 167.5L203.089 199.2C202.906 199.386 202.802 199.637 202.802 199.898C202.802 200.158 202.906 200.407 203.089 200.59C240.659 238.15 272.559 292.51 270.259 347.22C268.799 381.89 251.399 411.82 219.479 426.39C186.539 441.42 145.389 434.91 113.439 420.88C84.0195 407.967 58.0628 390.037 35.5695 367.09ZM79.6695 147.01C62.3895 150.67 51.2995 162.02 47.8595 178.79C42.8395 203.27 52.2595 231.34 64.2895 253.08C73.8695 270.393 85.9028 286.29 100.389 300.77C100.471 300.851 100.567 300.916 100.673 300.96C100.78 301.004 100.893 301.027 101.007 301.027C101.122 301.027 101.235 301.004 101.34 300.96C101.445 300.916 101.54 300.851 101.619 300.77L133.229 269.16C133.294 269.095 133.37 269.044 133.454 269.009C133.538 268.974 133.628 268.956 133.719 268.956C133.811 268.956 133.901 268.974 133.985 269.009C134.069 269.044 134.145 269.095 134.209 269.16C157.659 292.84 188.169 312.8 220.77 320.41C220.846 320.428 220.926 320.426 221.002 320.404C221.078 320.381 221.146 320.34 221.201 320.284C221.257 320.228 221.297 320.159 221.317 320.083C221.338 320.006 221.339 319.926 221.319 319.85C213.269 287.36 192.259 258.5 168.539 235.15C168.355 234.969 168.106 234.869 167.847 234.871C167.589 234.873 167.342 234.977 167.159 235.16L134.629 267.69C134.381 267.934 134.048 268.07 133.702 268.07C133.355 268.07 133.024 267.934 132.779 267.69C115.719 250.723 102.189 231.823 92.1895 210.99C83.2895 192.44 77.6995 171.65 79.6295 151.07C79.7595 149.67 80.2695 148.47 80.2795 147.51C80.2795 147.434 80.2626 147.358 80.2301 147.289C80.1976 147.22 80.1503 147.159 80.0918 147.111C80.0332 147.063 79.9648 147.029 79.8917 147.011C79.8186 146.994 79.7427 146.993 79.6695 147.01ZM115.159 148.15C115.077 148.129 114.991 148.13 114.909 148.152C114.827 148.174 114.752 148.217 114.691 148.276C114.63 148.335 114.585 148.408 114.56 148.49C114.535 148.571 114.532 148.657 114.549 148.74C117.069 160 121.406 171.11 127.559 182.07C138.126 200.87 151.436 218.043 167.49 233.59C167.637 233.734 167.835 233.814 168.042 233.812C168.248 233.81 168.445 233.727 168.589 233.58L201.219 200.95C201.461 200.71 201.598 200.383 201.6 200.042C201.602 199.701 201.469 199.373 201.229 199.13C177.869 175.41 148.109 156.71 115.159 148.15ZM222.249 354.7C212.743 356.193 203.033 356.02 193.119 354.18C158.059 347.67 126.869 326.71 101.869 302.26C101.625 302.02 101.295 301.887 100.952 301.888C100.61 301.89 100.282 302.027 100.039 302.27L68.7295 333.58C68.5976 333.713 68.5236 333.893 68.5236 334.08C68.5236 334.267 68.5976 334.447 68.7295 334.58C94.7495 360.56 129.999 383.35 167.139 387.87C192.749 390.98 216.549 382.81 222.579 355.06C222.592 355.014 222.592 354.966 222.58 354.92C222.569 354.874 222.546 354.831 222.513 354.796C222.48 354.76 222.439 354.733 222.393 354.716C222.348 354.699 222.298 354.694 222.249 354.7Z" fill="black"/>
+                        <path d="M499.72 316V195.72H469.65V159.76H499.72V145.81C499.72 113.26 522.97 91.87 558.31 91.87H587.45V127.83H563.89C551.49 127.83 543.12 135.89 543.12 148.29V159.76H587.45V195.72H543.12V316H499.72ZM663.809 318.48C628.779 318.48 605.839 292.75 605.839 257.1V159.76H649.239V247.49C649.239 266.4 661.329 280.04 679.309 280.04C698.219 280.04 711.549 265.16 711.549 245.32V159.76H754.639V316H711.549V294.3C702.869 309.18 685.509 318.48 663.809 318.48ZM789.945 316V159.76H833.035V181.46C841.715 166.27 859.075 157.28 880.775 157.28C915.805 157.28 938.745 182.7 938.745 218.66V316H895.345V228.27C895.345 209.36 883.255 195.72 865.275 195.72C846.365 195.72 833.035 210.29 833.035 230.44V316H789.945ZM972.191 316V159.76H1015.28V181.46C1023.96 166.27 1041.32 157.28 1063.02 157.28C1098.05 157.28 1120.99 182.7 1120.99 218.66V316H1077.59V228.27C1077.59 209.36 1065.5 195.72 1047.52 195.72C1028.61 195.72 1015.28 210.29 1015.28 230.44V316H972.191ZM1226.05 318.48C1172.73 318.48 1145.76 276.94 1145.76 237.57C1145.76 198.2 1169.94 157.28 1222.95 157.28C1278.13 157.28 1299.83 198.2 1299.83 233.54C1299.83 239.43 1299.52 244.08 1299.21 247.49H1186.99C1190.4 269.5 1204.04 283.14 1226.05 283.14C1243.41 283.14 1254.88 276.32 1258.29 262.99H1300.45C1294.25 296.78 1264.49 318.48 1226.05 318.48ZM1187.92 219.9H1257.05C1255.5 202.54 1243.72 188.9 1222.95 188.9C1204.35 188.9 1192.26 199.75 1187.92 219.9ZM1327.6 316V91.87H1370.69V316H1327.6Z" fill="black"/>
+                    </svg>
+                </a>
+
+                <div class="flex flex-wrap items-center gap-x-6">
+                    <a href="#home" class="block">Home</a>
+
+                    <a href="#waitlist" class="block">Waitlist</a>
+
+                    <a href="#features" class="block">Features</a>
+
+                    <a href="#calendar" class="block">Calendar</a>
+
+                    <a href="#faqs-section" class="block">FAQs</a>
+                </div>
+
+                <a href="mailto:dylan573215@gmail.com" class="block underline">dylan573215@gmail.com</a>
+            </div>
+
+            <div class="lg:ml-auto space-y-3 w-full max-w-md">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center gap-x-7">
+                    <h3 class="font-semibold text-lg">Join the Waitlist</h3>
+                    <p class="text-sm">Get early free access</p>
+                </div>
+
+                <form hx-post="/api/waitlist" hx-trigger="submit" hx-target="#result" hx-on="htmx:afterRequest: showMessage(event.detail.xhr)" class="gap-3 flex items w-full flex items-center">
+                    <input type="email" name="email" id="email" required type="emial" class="bg-[#FFFFFF] border border-[E6E6E6] focus:outline-none px-3 py-1.5 rounded-md w-full" placeholder="Email">
+
+                    <button type="submit" class="text-[#FFFFFF] bg-[#212121] py-1.5 px-9 rounded-md flex items-center justify-center gap-2 w-fit text-center">
+                        <span>Join</span>
+                    </button>
+                </form> 
+            </div>
+        </div>
+
+        <hr class="border border-[E6E6E6]">
+
+        <div class="flex flex-col md:flex-row items-start md:items-center space-y-9 lg:space-y-0">
+            <div>
+                <p>© 2025 Funnel. All rights reserved.</p>
+            </div>
+
+            <div class="md:ml-auto flex items-center gap-6">
+                <a href="/static/resources/funnel.pdf" target="_blank" class="block">Privacy Policy</a>
+
+                <a href="/static/resources/funnel.pdf" target="_blank" class="block">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="result" class="hidden"></div>
+
+    <div id="toast" class="hidden sticky bottom-0 z-10 p-3">
+        <div class="border border-[#6e6e6e] text-[#FFFFFF] bg-[#313131] py-3 px-6 rounded-md w-fit flex items-center space-x-9">
+            <p id="status">[NONE]</p>
+            <p id="message">You don't have a message.</p>
+        </div>
+    </div>
+
+    <script>
+        const faqs = document.querySelectorAll(".faq");
+
+        faqs.forEach((faq) => {
+            const btn = faq.querySelector(".faq-btn");
+            const content = faq.querySelector(".faq-content");
+            const icon = faq.querySelector(".faq-icon");
+
+            btn.addEventListener("click", () => {
+
+                faqs.forEach(f => {
+                f.querySelector(".faq-content").classList.add("hidden");
+                f.querySelector(".faq-icon").classList.remove("rotate-90");
+            });
+
+            content.classList.toggle("hidden");
+            icon.classList.toggle("rotate-90");
+            });
+        });
+    </script>
+
+    <script>
+        const menu = document.getElementById("menu");
+        const toggleBtn = document.getElementById("menu-toggle");
+        const container = document.getElementById("menu-container");
+
+        document.addEventListener("click", e => {
+            if (toggleBtn.contains(e.target)) {
+                menu.classList.toggle("hidden");
+            } else if (!container.contains(e.target)) {
+                menu.classList.add("hidden");
+            }
+        });
+    </script>
+
+    <script>
+        function showMessage(xhr) {
+            try {
+                const {status, message} = JSON.parse(xhr.responseText);
+                document.getElementById('status').textContent = `[${status ? 'TRUE' : 'FALSE'}]`;
+                document.getElementById('message').textContent = message;
+
+                const toast = document.getElementById('toast');
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 13000);
+            } catch(e) {
+                console.error("Respuesta inválida");
+            }
+        }
+    </script>
+</body>
+</html>
