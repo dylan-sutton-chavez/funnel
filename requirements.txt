@@ -1,0 +1,24 @@
+# Core web framework + server
+fastapi
+uvicorn
+
+# Templates and statics
+jinja2
+aiofiles
+
+# Validations and forms
+pydantic
+email-validator
+python-multipart
+
+# Rate limiting
+fastapi-throttle
+
+# Email (Resend)
+resend
+
+# Environment variables
+python-dotenv
+
+# Supabase
+supabase
