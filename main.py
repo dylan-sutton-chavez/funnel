@@ -48,8 +48,8 @@ async def index(request: Request):
 @app.post("/api/waitlist", dependencies=[Depends(limiter_waitlist)])
 def add_to_waitlist(email: EmailStr = Form(...), name: Optional[str] = Form(None)):
     try:
-        waitlist_noreply(email)
         supabase.table("users").insert({"name": name, "email": email}).execute()
+        waitlist_noreply(email)
         return {"message": "You have been added to the waitlist.", "status": True}
     except:
         return {"message": "There was an error, please try again later.", "status": False}
@@ -64,3 +64,4 @@ async def not_found_redirect(request: Request, exc):
 
 
 # python -m uvicorn main:app --reload
+
